@@ -9,7 +9,7 @@ const middlewares = [sagaMiddleware];
 
 const composer = process.env.NODE_ENV === 'development'
   ? compose(
-    applyMiddleware(...[]),
+    applyMiddleware(...middlewares),
     // eslint-disable-next-line no-console
     console.tron.createEnhancer(),
   )
