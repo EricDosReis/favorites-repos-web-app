@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
+import { Container } from './styles';
 import * as FavoriteActions from '../../store/actions/favorites';
 
 class Main extends Component {
@@ -34,7 +35,7 @@ class Main extends Component {
     const { favorites } = this.props;
 
     return (
-      <>
+      <Container>
         <form onSubmit={this.handleAddRepository}>
           <input
             placeholder="user/repository"
@@ -42,7 +43,7 @@ class Main extends Component {
             onChange={e => this.setState({ repositoryInput: e.target.value })}
           />
 
-          <button type="submit">
+          <button type="submit" className="ml-1">
             Add
           </button>
         </form>
@@ -58,7 +59,7 @@ class Main extends Component {
             </li>
           ))}
         </ul>
-      </>
+      </Container>
     );
   }
 }

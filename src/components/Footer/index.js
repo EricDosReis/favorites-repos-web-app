@@ -2,7 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Footer = ({ count }) => <p>You have {count} favorites</p>;
+import { Container } from './styles';
+
+const Footer = ({ count }) => (
+  <Container>
+    <p>You have {count} favorites</p>
+  </Container>
+);
 
 Footer.propTypes = {
   count: PropTypes.number.isRequired,
