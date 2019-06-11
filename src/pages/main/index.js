@@ -9,12 +9,22 @@ import * as FavoriteActions from '../../store/actions/favorites';
 class Main extends Component {
   static propTypes = {
     addFavoriteRequest: PropTypes.func.isRequired,
-    favorites: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      description: PropTypes.string,
-      url: PropTypes.string,
-    })).isRequired,
+    favorites: PropTypes.shape({
+      loading: PropTypes.bool,
+      data: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        url: PropTypes.string,
+      })),
+      error: PropTypes.oneOfType([
+        null,
+        PropTypes.shape({
+          title: PropTypes.string,
+          message: PropTypes.string,
+        }),
+      ]),
+    }).isRequired,
   }
 
   state = {
@@ -28,6 +38,8 @@ class Main extends Component {
     const { repositoryInput } = this.state;
 
     addFavoriteRequest(repositoryInput);
+
+    this.setState({ repositoryInput: '' });
   }
 
   render() {
@@ -48,14 +60,25 @@ class Main extends Component {
           </button>
         </form>
 
-        <ul>
-          {favorites.map(favorite => (
-            <li key={favorite.id0}>
-              <p>
-                <strong>{favorite.name}</strong> - {favorite.description}
-              </p>
+        {favorites.loading && <p className="loader">Loading ...</p>}
 
-              <a href={favorite.url}>Repo link</a>
+        {!!favorites.error
+          && (
+            <div className="card card--danger">
+              <p>
+                {favorites.error.title} <br />
+                <code>{favorites.error.message}</code>
+              </p>
+            </div>
+          )
+        }
+
+        <ul>
+          {favorites.data.map(favorite => (
+            <li className="card" key={favorite.id}>
+              <p>
+                <a href={favorite.url}><strong>{favorite.name}</strong></a> - {favorite.description}
+              </p>
             </li>
           ))}
         </ul>

@@ -17,6 +17,14 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility;
   }
 
+  p {
+    line-height: 1.3;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
   #root {
     width: 31.25rem;
     margin: 2rem auto 0;
@@ -47,6 +55,38 @@ const GlobalStyle = createGlobalStyle`
     &:focus, &:hover {
       cursor: pointer;
       opacity: .75;
+    }
+  }
+
+  .loader {
+    color: #818181;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .card {
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+    color: #6B6262;
+    margin: 1rem 0;
+    padding: 1.25rem;
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: #2C5876;
+
+      &:focus, &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--danger {
+      background: #FF4B4B;
+      color: #FFF;
     }
   }
 `;
