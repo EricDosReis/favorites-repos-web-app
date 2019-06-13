@@ -67,7 +67,7 @@ class Main extends Component {
             <div className="card card--danger">
               <p>
                 {favorites.error.title} <br />
-                <code>{favorites.error.message}</code>
+                {!!favorites.error.message && (<code>{favorites.error.message}</code>)}
               </p>
             </div>
           )
